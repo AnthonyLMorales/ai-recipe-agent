@@ -1,0 +1,66 @@
+[project]
+name = "recipe-agent-backend"
+version = "1.0.0"
+description = "AI-powered recipe chatbot backend using FastAPI and LangGraph"
+requires-python = ">=3.11"
+
+[tool.ruff]
+# Set the maximum line length
+line-length = 100
+target-version = "py311"
+
+# Exclude common directories
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "*.pyc",
+    ".pytest_cache",
+    "data",
+]
+
+[tool.ruff.lint]
+# Enable specific rule sets
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort (import sorting)
+    "N",   # pep8-naming
+    "W",   # pycodestyle warnings
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+
+# Ignore specific rules
+ignore = [
+    "E501",   # Line too long (handled by formatter)
+    "B008",   # Do not perform function calls in argument defaults
+    "SIM108", # Use ternary operator (sometimes less readable)
+]
+
+# Allow fix for all enabled rules (when using --fix)
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["graphs", "tools", "schemas", "database", "services", "checkpointer", "constants"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore specific rules in specific files
+"__init__.py" = ["F401"]  # Unused imports in __init__.py are often intentional
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+
+# Indent with spaces
+indent-style = "space"
+
+# Respect magic trailing commas
+skip-magic-trailing-comma = false
+
+# Use Unix-style line endings
+line-ending = "lf"

@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api import router
-
+from api import conversations_router, cooking_router
+from database.init import create_tables
 
 load_dotenv()
 
@@ -24,6 +24,7 @@ app = FastAPI(
 @app.on_event("startup")
 async def startup_event():
     """Initialize database on application startup."""
+    create_tables()
     logger.info("Application startup complete")
 
 
@@ -40,7 +41,8 @@ app.add_middleware(
 )
 
 # Include API routes
-app.include_router(router)
+app.include_router(cooking_router)
+app.include_router(conversations_router)
 
 
 @app.get("/")
