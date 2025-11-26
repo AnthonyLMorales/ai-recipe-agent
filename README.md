@@ -1,2 +1,7 @@
-# ai-recipe-agent
-LLM-powered cooking &amp; recipe Q&amp;A application. 
+# Recipe Agent v2
+
+AI-powered cooking assistant using FastAPI, LangGraph, and Next.js.
+
+## Status
+
+🚧 Under construction
