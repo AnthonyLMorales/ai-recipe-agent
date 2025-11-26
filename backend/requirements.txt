@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+langchain
+langchain-openai
+langchain-tavily
+langgraph
+pydantic
+pydantic-settings
+python-dotenv
+httpx
+sqlalchemy
+
+# Development dependencies
+pytest
+pytest-cov
+ruff
