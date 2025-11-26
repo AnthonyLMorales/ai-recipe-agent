@@ -1,0 +1,13 @@
+node_modules
+.next
+dist
+build
+coverage
+.vercel
+*.min.js
+*.min.css
+package-lock.json
+pnpm-lock.yaml
+bun.lockb
+.env.local
+.env.production.local

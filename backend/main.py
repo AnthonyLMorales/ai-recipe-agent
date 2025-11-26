@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -12,20 +13,26 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    """Handle application lifespan events."""
+    # Startup
+    create_tables()
+    logger.info("Application startup complete")
+    yield
+    # Shutdown (if needed in the future)
+    logger.info("Application shutdown")
+
+
 app = FastAPI(
     title="Cooking Assistant API",
     description="LLM-powered cooking and recipe Q&A application using LangGraph",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize database on application startup."""
-    create_tables()
-    logger.info("Application startup complete")
 
 
 # Add CORS for frontend
